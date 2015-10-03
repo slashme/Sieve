@@ -9,12 +9,22 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+<<<<<<< HEAD
    width="744.09448819"
    height="1052.3622047"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="New document 1">
+=======
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Triangle.svg">
+>>>>>>> 4e9eb9811b4c0f7a63bc7545371906bc6dc511af
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,6 +34,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
+<<<<<<< HEAD
      inkscape:zoom="1.7239205"
      inkscape:cx="307.92249"
      inkscape:cy="567.21781"
@@ -44,6 +55,19 @@
        enabled="true"
        snapvisiblegridlinesonly="true" />
   </sodipodi:namedview>
+=======
+     inkscape:zoom="0.35"
+     inkscape:cx="-52.142857"
+     inkscape:cy="517.14286"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1536"
+     inkscape:window-height="878"
+     inkscape:window-x="1042"
+     inkscape:window-y="541"
+     inkscape:window-maximized="1" />
+>>>>>>> 4e9eb9811b4c0f7a63bc7545371906bc6dc511af
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -60,6 +84,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+<<<<<<< HEAD
     <path
        sodipodi:type="arc"
        style="color:#000000;fill:#00ff00;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
@@ -1159,5 +1184,62 @@
        sodipodi:rx="3.5433371"
        sodipodi:ry="3.5433371"
        d="m 203.00194,370.27557 a 3.5433371,3.5433371 0 1 1 -7.08667,0 3.5433371,3.5433371 0 1 1 7.08667,0 z" />
+=======
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="000" y="000">  1</text> <!--line 1-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="020" y="000">  2</text> <!--line 2-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FF00" text-anchor="middle" x="000" y="020">  3</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="040" y="000">  4</text> <!--line 3-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#0000FF" text-anchor="middle" x="020" y="020">  5</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFF00" text-anchor="middle" x="000" y="040">  6</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="060" y="000">  7</text> <!--line 4-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="040" y="020">  8</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FF00" text-anchor="middle" x="020" y="040">  9</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF00FF" text-anchor="middle" x="000" y="060"> 10</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="080" y="000"> 11</text> <!--line 5-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFF00" text-anchor="middle" x="060" y="020"> 12</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="040" y="040"> 13</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="020" y="060"> 14</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FFFF" text-anchor="middle" x="000" y="080"> 15</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="100" y="000"> 16</text> <!--line 6-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="080" y="020"> 17</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFF00" text-anchor="middle" x="060" y="040"> 18</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="040" y="060"> 19</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF00FF" text-anchor="middle" x="020" y="080"> 20</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FF00" text-anchor="middle" x="000" y="100"> 21</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="120" y="000"> 22</text> <!--line 7-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="100" y="020"> 23</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFF00" text-anchor="middle" x="080" y="040"> 24</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#0000FF" text-anchor="middle" x="060" y="060"> 25</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="040" y="080"> 26</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FF00" text-anchor="middle" x="020" y="100"> 27</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="000" y="120"> 28</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="140" y="000"> 29</text> <!--line 8-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFFFF" text-anchor="middle" x="120" y="020"> 30</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="100" y="040"> 31</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="080" y="060"> 32</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FF00" text-anchor="middle" x="060" y="080"> 33</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="040" y="100"> 34</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#0000FF" text-anchor="middle" x="020" y="120"> 35</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFF00" text-anchor="middle" x="000" y="140"> 36</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="160" y="000"> 37</text> <!--line 9-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="140" y="020"> 38</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FF00" text-anchor="middle" x="120" y="040"> 39</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF00FF" text-anchor="middle" x="100" y="060"> 40</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="080" y="080"> 41</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFF00" text-anchor="middle" x="060" y="100"> 42</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="040" y="120"> 43</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="020" y="140"> 44</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FFFF" text-anchor="middle" x="000" y="160"> 45</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="180" y="000"> 46</text> <!--line 10-->
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="160" y="020"> 47</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFF00" text-anchor="middle" x="140" y="040"> 48</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="120" y="060"> 49</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF00FF" text-anchor="middle" x="100" y="080"> 50</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#00FF00" text-anchor="middle" x="080" y="100"> 51</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FF0000" text-anchor="middle" x="060" y="120"> 52</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#000000" text-anchor="middle" x="040" y="140"> 53</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#FFFF00" text-anchor="middle" x="020" y="160"> 54</text>
+     <text dy="5" stroke="#444444" stroke-width="0.1" fill="#0000FF" text-anchor="middle" x="000" y="180"> 55</text>
+>>>>>>> 4e9eb9811b4c0f7a63bc7545371906bc6dc511af
   </g>
 </svg>
