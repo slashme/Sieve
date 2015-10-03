@@ -1,9 +1,9 @@
 #!/usr/bin/python
-import math
+import math, random
 #Static SVG file name for now:
 svgfilename="/home/david/Pictures/Sieve/TriangleOutput.svg"
 #Static number of rows:
-rows=50
+rows=20
 # Open svg file for writing:
 outfile=open(svgfilename,'w')
 #Write svg header:
@@ -34,17 +34,19 @@ for i in range(0,rows):
     poslist.append([count,x,vspace*i,[]])
     x+=1
     count+=1
-for i in range(len(poslist)):
-  if i%2:
-    poslist[i][3].append([0,1,[255,0,0]])
+for k in range(1,count/2):
+  tempcolour=[random.randint(0,255), random.randint(0,255), random.randint(0,255)]
+  for i in range(len(poslist)):
+    if not i%k:
+      poslist[i][3].append([k,1,tempcolour])
 for i in range(len(poslist)):
   tempstring='    <circle fill="rgb(0,0,0)" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->' % ((poslist[i][1]+rows/2.0)*10.0, (poslist[i][2]+1.0)*10.0, 5, poslist[i][0])
   outfile.write(tempstring+'\n')
   if len(poslist[i][3]):
     for j in range(len(poslist[i][3])):
       outfile.write('        <animate attributeName="fill" attributeType="CSS"\n')
-      tempstring='        to="rgb(%d,%d,%d)" begin="%ds" dur="%ds" fill="freeze" />\n' % (poslist[i][3][j][2][0], poslist[i][3][j][2][1], poslist[i][3][j][2][2], poslist[i][3][j][0],  poslist[i][3][j][1])
-      outfile.write(tempstring+'\n')
+      tempstring='        to="rgb(%d,%d,%d)" begin="%ds" dur="%ds" fill="freeze" />\n' % (poslist[i][3][j][2][0], poslist[i][3][j][2][1], poslist[i][3][j][2][2], poslist[i][3][j][0], poslist[i][3][j][1] )
+      outfile.write(tempstring)
   outfile.write('    </circle>\n')
 outfile.write('</svg>\n')
 outfile.close()
