@@ -3,7 +3,7 @@ import math
 #Static SVG file name for now:
 svgfilename="/home/david/Pictures/Sieve/TriangleOutput.svg"
 #Static number of rows:
-rows=10
+rows=50
 # Open svg file for writing:
 outfile=open(svgfilename,'w')
 #Write svg header:
@@ -27,7 +27,12 @@ for i in range(0,rows):
     x+=1
     count+=1
 for i in range(len(poslist)):
-  tempstring='    <circle cx="%.4f" cy="%.4f" r="%.1f"/><!--%d-->' % (poslist[i][1], poslist[i][2], 0.5, poslist[i][0])
+  if i%2:
+    poslist[i].append("red")
+  else:
+    poslist[i].append("black")
+for i in range(len(poslist)):
+  tempstring='    <circle fill="%s" cx="%.4f" cy="%.4f" r="%.1f"/><!--%d-->' % (poslist[i][3], poslist[i][1]+rows/2.0, poslist[i][2]+1.0, 0.5, poslist[i][0])
   outfile.write(tempstring+'\n')
 outfile.write('</svg>\n')
 outfile.close()
