@@ -3,7 +3,40 @@ import math, random
 #Static SVG file name for now:
 svgfilename="/home/david/Pictures/Sieve/TriangleOutput.svg"
 #Static number of rows:
-rows=20
+rows=50
+#List of funky colors:
+colorlist=[
+  [  0,255,  0],
+  [  0,  0,255],
+  [255,255,  0],
+  [255,  0,255],
+  [  0,255,255],
+  [  0,  0,  0],
+  [  0,127,  0],
+  [  0,  0,127],
+  [127,127,  0],
+  [127,  0,127],
+  [  0,127,127],
+  [127,127,127],
+  [  0, 63,  0],
+  [  0,  0, 63],
+  [ 63, 63,  0],
+  [ 63,  0, 63],
+  [  0, 63, 63],
+  [ 63, 63, 63],
+  [127, 63,127],
+  [127,127, 63],
+  [ 63, 63,127],
+  [ 63,127, 63],
+  [127, 63, 63],
+  [ 63, 63, 63],
+  [255, 63,255],
+  [255,255, 63],
+  [ 63, 63,255],
+  [ 63,255, 63],
+  [255, 63, 63],
+  [ 63, 63, 63]
+]
 # Open svg file for writing:
 outfile=open(svgfilename,'w')
 #Write svg header:
@@ -34,12 +67,14 @@ for i in range(0,rows):
     poslist.append([count,x,vspace*i,[]])
     x+=1
     count+=1
+countb=0 #new counter, so that we can mark the nth prime and count a sane number of seconds.
 #Mark the multiples for animation:
 for k in range(2,count): #Don't want multiples of 1!
   if not len(poslist[k-1][3]): #Only mark multiples of primes
-    tempcolour=[random.randint(0,255), random.randint(0,255), random.randint(0,255)] #Create a random colour - TODO: Structure this later.
+    tempcolor=colorlist[countb%len(colorlist)] #Select the next color from the list
     for i in range(2*k,len(poslist),k): #mark all multiples of k
-      poslist[i-1][3].append([k,1,tempcolour])
+      poslist[i-1][3].append([countb+1,1,tempcolor])
+    countb+=1
 for i in range(len(poslist)):
   tempstring='    <circle fill="rgb(255,0,0)" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->' % ((poslist[i][1]+rows/2.0)*10.0, (poslist[i][2]+1.0)*10.0, 5, poslist[i][0])
   outfile.write(tempstring+'\n')
