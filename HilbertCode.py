@@ -5,7 +5,7 @@ svgfilename="/home/david/Pictures/Sieve/HilbertOutput.svg"
 #Static number of iterations:
 iterations=5
 #Diagram size in SVG units:
-diagsz=1000.0
+diagsz=500.0
 #Spot size is diagram size divided in 2 for each iteration:
 spotsize=diagsz/(2.0**(iterations+1))
 #List of funky colors:
@@ -73,11 +73,13 @@ def hilbert(x0, y0, xr, xt, yr, yt, n):
         poslist.append([xi, yi, []])
 
 hilbert(0.0, 0.0, 1.0, 0.0, 0.0, 1.0, iterations)
+
 countb=0 #new counter, so that we can mark the nth prime and count a sane number of seconds.
+tempcolor=[255,255,255] #Fade all to white
 #Mark the multiples for animation:
 for k in range(2,len(poslist)): #Don't want multiples of 1!
   if not len(poslist[k-1][2]): #Only mark multiples of primes
-    tempcolor=colorlist[countb%len(colorlist)] #Select the next color from the list
+    #tempcolor=colorlist[countb%len(colorlist)] #Select the next color from the list
     for i in range(2*k,len(poslist),k): #mark all multiples of k
       poslist[i-1][2].append([countb+1,0.5,tempcolor])
     countb+=1
@@ -90,6 +92,13 @@ for i in range(len(poslist)):
       tempstring='        to="rgb(%d,%d,%d)" begin="%ds" dur="%.4fs" fill="freeze" />\n' % (poslist[i][2][j][2][0], poslist[i][2][j][2][1], poslist[i][2][j][2][2], poslist[i][2][j][0], poslist[i][2][j][1] )
       outfile.write(tempstring)
   outfile.write('    </circle>\n')
+
+#Create a line to follow the Hilbert curve
+outfile.write('<polyline points="')
+for i in range(len(poslist)):
+  outfile.write( '\n%.4f,%.4f ' % ((poslist[i][0])*diagsz, (poslist[i][1])*diagsz))
+outfile.write('"\n style="fill:none;stroke:red;stroke-width:%.4f" />\n' % (spotsize/4.0))
+
 outfile.write('</svg>\n')
 outfile.close()
 #Pass the output filename to the calling page.
