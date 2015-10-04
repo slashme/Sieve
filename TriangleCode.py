@@ -34,12 +34,12 @@ for i in range(0,rows):
     poslist.append([count,x,vspace*i,[]])
     x+=1
     count+=1
-for k in range(2,count/2):
-  tempcolour=[random.randint(0,255), random.randint(0,255), random.randint(0,255)]
-  for i in range(1,len(poslist)):
-    if not (i+1)%k:
-      if i>k:
-        poslist[i][3].append([k,1,tempcolour])
+#Mark the multiples for animation:
+for k in range(2,count): #Don't want multiples of 1!
+  if not len(poslist[k-1][3]): #Only mark multiples of primes
+    tempcolour=[random.randint(0,255), random.randint(0,255), random.randint(0,255)] #Create a random colour - TODO: Structure this later.
+    for i in range(2*k,len(poslist),k): #mark all multiples of k
+      poslist[i-1][3].append([k,1,tempcolour])
 for i in range(len(poslist)):
   tempstring='    <circle fill="rgb(255,0,0)" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->' % ((poslist[i][1]+rows/2.0)*10.0, (poslist[i][2]+1.0)*10.0, 5, poslist[i][0])
   outfile.write(tempstring+'\n')
