@@ -58,7 +58,7 @@ poslist=[]
 #Which spot are we at?
 count=1
 #Vertical spacing between rows is sqrt(3/4)
-vspace=(3.0/4)**0.5
+vspace=(3.0/4)**0.1
 for i in range(0,rows):
   #The leftmost spot in row i is at x=-i/2
   x=-i/2.0
@@ -73,7 +73,7 @@ for k in range(2,count): #Don't want multiples of 1!
   if not len(poslist[k-1][3]): #Only mark multiples of primes
     tempcolor=colorlist[countb%len(colorlist)] #Select the next color from the list
     for i in range(2*k,len(poslist),k): #mark all multiples of k
-      poslist[i-1][3].append([countb+1,1,tempcolor])
+      poslist[i-1][3].append([countb+1,0.5,tempcolor])
     countb+=1
 for i in range(len(poslist)):
   tempstring='    <circle fill="rgb(255,0,0)" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->' % ((poslist[i][1]+rows/2.0)*10.0, (poslist[i][2]+1.0)*10.0, 5, poslist[i][0])
@@ -81,7 +81,7 @@ for i in range(len(poslist)):
   if len(poslist[i][3]):
     for j in range(len(poslist[i][3])):
       outfile.write('        <animate attributeName="fill" attributeType="CSS"\n')
-      tempstring='        to="rgb(%d,%d,%d)" begin="%ds" dur="%ds" fill="freeze" />\n' % (poslist[i][3][j][2][0], poslist[i][3][j][2][1], poslist[i][3][j][2][2], poslist[i][3][j][0], poslist[i][3][j][1] )
+      tempstring='        to="rgb(%d,%d,%d)" begin="%ds" dur="%.4fs" fill="freeze" />\n' % (poslist[i][3][j][2][0], poslist[i][3][j][2][1], poslist[i][3][j][2][2], poslist[i][3][j][0], poslist[i][3][j][1] )
       outfile.write(tempstring)
   outfile.write('    </circle>\n')
 outfile.write('</svg>\n')
