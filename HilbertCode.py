@@ -80,7 +80,7 @@ tempcolor=[255,255,255] #Fade all to white
 for k in range(2,len(poslist)): #Don't want multiples of 1!
   if not len(poslist[k-1][2]): #Only mark multiples of primes
     #tempcolor=colorlist[countb%len(colorlist)] #Select the next color from the list
-    for i in range(2*k,len(poslist),k): #mark all multiples of k
+    for i in range(2*k,len(poslist)+1,k): #mark all multiples of k. Because we're handling the i-1th item,go one further.
       poslist[i-1][2].append([countb+1,0.5,tempcolor])
     countb+=1
 for i in range(len(poslist)):
