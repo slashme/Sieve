@@ -89,7 +89,6 @@ for i in range(len(poslist)):
   tempstring='    <circle fill="rgb(255,0,0)" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->\n' % ((poslist[i][0])*diagsz, (poslist[i][1])*diagsz, spotsize, i+1)
   outfile.write(tempstring)
   if len(poslist[i][2]):
-    outfile.write('<!--'+str(poslist[i][2][0][0])+'-->\n') 
     for j in range(len(poslist[i][2])):
       outfile.write('        <animate attributeName="fill" attributeType="CSS"\n')
       tempstring='        to="rgb(%d,%d,%d)" begin="%ds" dur="%.4fs" fill="freeze" />\n' % (poslist[i][2][j][2][0], poslist[i][2][j][2][1], poslist[i][2][j][2][2], poslist[i][2][j][0], poslist[i][2][j][1] )
