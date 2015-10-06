@@ -3,9 +3,11 @@ import math, random
 #Static SVG file name for now:
 svgfilename="/home/david/Pictures/Sieve/HilbertOutput.svg"
 #Static number of iterations:
-iterations=5
+iterations=4
+#Number of points in diagram:
+npoints=2**(2*iterations)
 #Diagram size in SVG units:
-diagsz=500.0
+diagsz=800.0
 #Spot size is diagram size divided in 2 for each iteration:
 spotsize=diagsz/(2.0**(iterations+1))
 #List of funky colors:
@@ -87,6 +89,7 @@ for i in range(len(poslist)):
   tempstring='    <circle fill="rgb(255,0,0)" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->\n' % ((poslist[i][0])*diagsz, (poslist[i][1])*diagsz, spotsize, i+1)
   outfile.write(tempstring)
   if len(poslist[i][2]):
+    outfile.write('<!--'+str(poslist[i][2][0][0])+'-->\n') 
     for j in range(len(poslist[i][2])):
       outfile.write('        <animate attributeName="fill" attributeType="CSS"\n')
       tempstring='        to="rgb(%d,%d,%d)" begin="%ds" dur="%.4fs" fill="freeze" />\n' % (poslist[i][2][j][2][0], poslist[i][2][j][2][1], poslist[i][2][j][2][2], poslist[i][2][j][0], poslist[i][2][j][1] )
@@ -98,6 +101,18 @@ outfile.write('<polyline points="')
 for i in range(len(poslist)):
   outfile.write( '\n%.4f,%.4f ' % ((poslist[i][0])*diagsz, (poslist[i][1])*diagsz))
 outfile.write('"\n style="fill:none;stroke:red;stroke-width:%.4f" />\n' % (spotsize/4.0))
+
+# Label the primes
+for i in range(len(poslist)):
+  if not len(poslist[i][2]):
+    tempstring='    <text text-anchor="middle" opacity="0" fill="rgb(0,0,0)" x="%.4f" y="%.4f" font-size="%.2f">%d\n' % ((poslist[i][0])*diagsz, (poslist[i][1])*diagsz+spotsize/3.0, spotsize, i+1)
+    outfile.write(tempstring)
+    outfile.write('        <animate attributeName="opacity" attributeType="CSS"\n')
+    #Rough prime counting function is n/ln(n)
+    tempstring='        to="1" begin="%ds" dur="1s" fill="freeze" />\n' % (math.ceil(1.2*iterations/math.log(iterations)))
+    outfile.write(tempstring)
+    outfile.write('    </text>\n')
+
 
 outfile.write('</svg>\n')
 outfile.close()
