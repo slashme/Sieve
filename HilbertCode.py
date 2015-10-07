@@ -79,18 +79,21 @@ hilbert(0.0, 0.0, 1.0, 0.0, 0.0, 1.0, iterations)
 countb=0 #new counter, so that we can mark the nth prime and count a sane number of seconds.
 tempcolor=[255,255,255] #Fade all to white
 #Mark the multiples for animation:
-for k in range(2,len(poslist)): #Don't want multiples of 1!
+for k in range(2,int(math.sqrt(len(poslist)))): #Don't want multiples of 1!
   if not len(poslist[k-1][2]): #Only mark multiples of primes
-    #tempcolor=colorlist[countb%len(colorlist)] #Select the next color from the list
+    tempcolor=colorlist[countb%len(colorlist)] #Select the next color from the list
     for i in range(2*k,len(poslist)+1,k): #mark all multiples of k. Because we're handling the i-1th item,go one further.
       poslist[i-1][2].append([countb+1,0.5,tempcolor])
     countb+=1
 for i in range(len(poslist)):
-  tempstring='    <circle fill="rgb(255,0,0)" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->\n' % ((poslist[i][0])*diagsz, (poslist[i][1])*diagsz, spotsize, i+1)
+  tempstring='    <circle fill="rgb(255,0,0)" opacity="1" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->\n' % ((poslist[i][0])*diagsz, (poslist[i][1])*diagsz, spotsize, i+1)
   outfile.write(tempstring)
   if len(poslist[i][2]):
-    #for j in range(len(poslist[i][2])): #Commented out: Fading to white only, so no need to do different fades for different colours.
-    for j in range(1): 
+    outfile.write('        <animate attributeName="opacity" attributeType="CSS"\n')
+    tempstring='        to="0.3" begin="%ds" dur="1s" fill="freeze" />\n' % (poslist[i][2][0][0])
+    outfile.write(tempstring)
+    for j in range(len(poslist[i][2])):
+    #for j in range(1): #Commented out: This is if I'm fading to white only, so no need to do different fades for different colours.
       outfile.write('        <animate attributeName="fill" attributeType="CSS"\n')
       tempstring='        to="rgb(%d,%d,%d)" begin="%ds" dur="%.4fs" fill="freeze" />\n' % (poslist[i][2][j][2][0], poslist[i][2][j][2][1], poslist[i][2][j][2][2], poslist[i][2][j][0], poslist[i][2][j][1] )
       outfile.write(tempstring)
