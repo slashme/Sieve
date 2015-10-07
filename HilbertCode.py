@@ -109,7 +109,7 @@ for i in range(len(poslist)):
     outfile.write(tempstring)
     outfile.write('        <animate attributeName="opacity" attributeType="CSS"\n')
     #Rough prime counting function is n/ln(n)
-    tempstring='        to="1" begin="%ds" dur="1s" fill="freeze" />\n' % (math.ceil(1.2*iterations/math.log(iterations))) #FIXME - this is still wrong. See OEIS of 1,2,4,6,11,18,31,54,97 though.
+    tempstring='        to="1" begin="%ds" dur="1s" fill="freeze" />\n' % (math.ceil(1.2*2**iterations/math.log(2**iterations)))
     outfile.write(tempstring)
     outfile.write('    </text>\n')
 
