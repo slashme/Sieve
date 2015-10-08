@@ -86,7 +86,7 @@ for k in range(2,int(math.sqrt(len(poslist)))): #Don't want multiples of 1!
       poslist[i-1][2].append([countb+1,0.5,tempcolor])
     countb+=1
 for i in range(len(poslist)):
-  tempstring='    <circle fill="rgb(255,0,0)" opacity="1" cx="%.4f" cy="%.4f" r="%.1f"><!--%d-->\n' % ((poslist[i][0])*diagsz, (poslist[i][1])*diagsz, spotsize, i+1)
+  tempstring='    <circle id="%d" fill="rgb(255,0,0)" opacity="1" cx="%.4f" cy="%.4f" r="%.1f">\n' % (i+1, (poslist[i][0])*diagsz, (poslist[i][1])*diagsz, spotsize)
   outfile.write(tempstring)
   if len(poslist[i][2]):
     outfile.write('        <animate attributeName="opacity" attributeType="CSS"\n')
