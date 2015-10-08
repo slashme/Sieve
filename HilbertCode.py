@@ -115,9 +115,7 @@ for i in range(len(poslist)):
     tempstring='        to="1" begin="%ds" dur="1s" fill="freeze" />\n' % (math.ceil(1.2*2**iterations/math.log(2**iterations)))
     outfile.write(tempstring)
     outfile.write('    </text>\n')
-
-
 outfile.write('</svg>\n')
+
+#Close the file
 outfile.close()
-#Pass the output filename to the calling page.
-print svgfilename
