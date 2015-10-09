@@ -49,7 +49,7 @@ outfile=open(svgfilename,'w')
 outfile.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
 outfile.write('<svg xmlns:svg="http://www.w3.org/2000/svg"\n')
 outfile.write('xmlns="http://www.w3.org/2000/svg" version="1.1"\n')
-#Make 350 px wide, 175 px high diagram with a 5 px blank border
+#Set svg size:
 outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
 #Create list of spots. The list contains:
 # Count: the number of the spot
