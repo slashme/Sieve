@@ -51,12 +51,6 @@ for i in range(len(points)):
   outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
 outfile.write('"\n style="fill:none;stroke:red;stroke-width:%.4f" />\n' % (spotsize/3.0))
 
-#Create a dashed line on top of the original line:
-outfile.write('<polyline points="')
-for i in range(len(points)):
-  outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
-outfile.write('"\n style="fill:none; stroke:black; stroke-dasharray:%f,%f; stroke-dashoffset:%f; stroke-width:%.4f" />\n' % (spotsize*2,spotsize*2,spotsize,spotsize/3.0))
-
 #End SVG:
 outfile.write('</svg>\n')
 #Close the file
