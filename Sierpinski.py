@@ -46,20 +46,30 @@ outfile.write('xmlns="http://www.w3.org/2000/svg" version="1.1"\n')
 #Set svg size:
 outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
 
-#Create a line to follow the curve:
-outfile.write('<polyline points="')
-for i in range(len(points)):
-  outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
-outfile.write('"\n style="fill:none;stroke:red;stroke-width:%.4f" />\n' % (spotsize/3.0))
+#Draw the line:
+outfile.write('<polyline style="fill:none; stroke:red; stroke-width:%.4f">\n' % (spotsize/3.0))
+#Create a series of animate elements which will hold the points:
+for n in range(iterations):
+  outfile.write('  <animate attributeName="points" begin="%ds" dur="1s" fill="freeze" \n' % n)
+  #The from portion will hold the last iteration:
+  outfile.write('    from="')
+  for i in range(len(points)):
+    outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
+  #The "to" portion will contain the next level down:
+  outfile.write('"\n    to="')
+  #Interpolate the curve to generate next level down:
+  #Span of points to interpolate:
+  span=(3**(n+1))
+  for i in range((len(points)-1)/span):
+    for j in range(3**(n+1)-1):
+      #outfile.write(str([n,i,j])) #debug
+      points[i*span+j+1][0]=points[i*span][0]+((j+1.0)/span)*(points[(i+1)*span][0]-points[i*span][0])
+      points[i*span+j+1][1]=points[i*span][1]+((j+1.0)/span)*(points[(i+1)*span][1]-points[i*span][1])
+  for i in range(len(points)):
+    outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
+  outfile.write('"\n  />') #Close animate tag
 
-#Interpolate the curve to generate next level down:
-for i in range((len(points)-1)/3):
-  del points[i+1]
-  del points[i+1]
-outfile.write('<polyline points="')
-for i in range(len(points)):
-  outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
-outfile.write('"\n style="fill:none;stroke:black;stroke-width:%.4f" />\n' % (spotsize/3.0))
+outfile.write('</polyline>\n')
 
 #End SVG:
 outfile.write('</svg>\n')
