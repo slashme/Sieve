@@ -51,6 +51,12 @@ for i in range(len(points)):
   outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*spotsize+diagsz/2.0, (points[i][1])*spotsize+diagsz/2.0))
 outfile.write('" />')
 
+#Draw even spots:
+outfile.write('<g id="evenspots">')
+for i in range(0,len(points),2):
+  outfile.write(' <circle id="%d" fill="rgb(255,0,0)" opacity="1" cx="%.4f" cy="%.4f" r="%.4f" />\n' % (i, (points[i][0])*spotsize+diagsz/2, (points[i][1])*spotsize+diagsz/2, spotsize/2))
+outfile.write('</g>')
+
 #End SVG:
 outfile.write('</svg>\n')
 #Close the file
