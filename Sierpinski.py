@@ -51,11 +51,11 @@ outfile.write('<polyline style="fill:none; stroke:red; stroke-width:%.4f">\n' % 
 #Create a series of animate elements which will hold the points:
 for n in range(iterations+1):
   outfile.write('  <animate attributeName="points" begin="%ds" dur="1s" fill="freeze" \n' % (iterations-n))
-  #The from portion will hold the last iteration:
+  #The "to" portion will hold the last iteration:
   outfile.write('    to="')
   for i in range(len(points)):
     outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
-  #The "to" portion will contain the next level down:
+  #The "from" portion will contain the next level down:
   outfile.write('"\n    from="')
   #Interpolate the curve to generate next level down:
   #Span of points to interpolate:
