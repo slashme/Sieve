@@ -36,8 +36,8 @@ for n in range(iterations):
     by=points[3*i+1][1]
     #outfile.write(str([ax, ay, bx, by])+'\n') #debug
     for j in range(len(refpoints)-2):
-      x=(bx-ax)*refpoints[j+1][0]+(ay-by)*refpoints[j+1][1]*(-(1-2*(i%2)))+ax
-      y=(by-ay)*refpoints[j+1][0]+(bx-ax)*refpoints[j+1][1]*(-(1-2*(i%2)))+ay
+      x=(bx-ax)*refpoints[j+1][0]+(ay-by)*refpoints[j+1][1]*(-(1-2*((i+n)%2)))+ax
+      y=(by-ay)*refpoints[j+1][0]+(bx-ax)*refpoints[j+1][1]*(-(1-2*((i+n)%2)))+ay
       points.insert(3*i+j+1,[x,y])
       #points.insert(3*i+j+1,[x,y,i,j]) #debug
       #outfile.write(str(points)+'\n') #debug
