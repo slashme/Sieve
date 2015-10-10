@@ -1,9 +1,19 @@
-import math, operator
+import math, operator, gmpy2
 #Static defs
 #Number of rings
-rings=20
+rings=4
 #Need sin(pi/3) for hexagon corner:
 sp3=math.sin(math.pi/3)
+
+#Generator function from primes using gmpy2:
+def primes():
+  n = 2
+  while True:
+    yield n
+    n = gmpy2.next_prime(n)
+#Create a new instance of the generator:
+primegen=primes()
+
 #Direction list:
 moves=[
     [ 0.5, sp3], #right up
@@ -23,13 +33,6 @@ svgfilename="/home/david/Pictures/Sieve/hexgridOutput.svg"
 # Open svg file for writing:
 outfile=open(svgfilename,'w')
 
-#Write svg header:
-outfile.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
-outfile.write('<svg xmlns:svg="http://www.w3.org/2000/svg"\n')
-outfile.write('xmlns="http://www.w3.org/2000/svg" version="1.1"\n')
-#Set svg size:
-outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
-
 #Create the spiral:
 #Start in the middle
 points=[[0,0]]
@@ -45,17 +48,36 @@ for i in range(rings):
     for k in range(i+1):
       points.append(map(operator.add, points[-1], moves[j]))
 
-#Draw the spiral:
-outfile.write('<polyline style="fill:none; stroke:red; stroke-width:%.4f"\n  points="' % (spotsize/10))
-for i in range(len(points)):
-  outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*spotsize+diagsz/2.0, (points[i][1])*spotsize+diagsz/2.0))
-outfile.write('" />')
+#Create list of primes:
+primelist=[int(next(primegen))]
+while primelist[-1]<=len(points):
+  primelist.append(int(next(primegen)))
+#Truncate if needed:
+if primelist[-1]>len(points):
+  del primelist[-1]
 
-#Draw even spots:
-outfile.write('<g id="evenspots">')
-for i in range(0,len(points),2):
-  outfile.write(' <circle id="%d" fill="rgb(255,0,0)" opacity="1" cx="%.4f" cy="%.4f" r="%.4f" />\n' % (i, (points[i][0])*spotsize+diagsz/2, (points[i][1])*spotsize+diagsz/2, spotsize/2))
-outfile.write('</g>')
+#Write svg header:
+outfile.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
+outfile.write('<svg xmlns:svg="http://www.w3.org/2000/svg"\n')
+outfile.write('xmlns="http://www.w3.org/2000/svg" version="1.1"\n')
+#Set svg size:
+outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
+
+#Draw the spiral:
+#outfile.write('<polyline style="fill:none; stroke:red; stroke-width:%.4f"\n  points="' % (spotsize/10))
+#for i in range(len(points)):
+#  outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*spotsize+diagsz/2.0, (points[i][1])*spotsize+diagsz/2.0))
+#outfile.write('" />')
+
+#Draw prime spots:
+for p in range(len(primelist)):
+  outfile.write('<g id="mod%dspots">\n' %(primelist[p]))
+  for i in range(0,len(points),primelist[p]):
+    outfile.write(' <circle id="%dx%d" fill="rgb(0,0,255)" stroke="none" stroke-width="%.4f" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], i, spotsize/10, (points[i][0])*spotsize+diagsz/2, (points[i][1])*spotsize+diagsz/2, spotsize/2))
+    outfile.write('  <animate attributeName="opacity" begin="%ds" dur="1s" fill="freeze" from="0" to="1" /> \n' % (p))
+    outfile.write('  <animate attributeName="opacity" begin="%ds" dur="1s" fill="freeze" from="1" to="0" /> \n' % (p+1))
+    outfile.write(' </circle>\n')
+  outfile.write('</g>')
 
 #End SVG:
 outfile.write('</svg>\n')
