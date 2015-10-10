@@ -1,7 +1,7 @@
 import math
 #Static definitions:
 #Order of triangle to draw:
-iterations=5
+iterations=7
 #Static SVG file name for now:
 svgfilename="/home/david/Pictures/Sieve/SierpinskiOutput.svg"
 # Open svg file for writing:
@@ -47,16 +47,16 @@ outfile.write('xmlns="http://www.w3.org/2000/svg" version="1.1"\n')
 outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
 
 #Draw the line:
-outfile.write('<polyline style="fill:none; stroke:red; stroke-width:%.4f">\n' % (spotsize/3.0))
+outfile.write('<polyline style="fill:none; stroke:red; stroke-width:%.4f">\n' % (spotsize/1.0))
 #Create a series of animate elements which will hold the points:
-for n in range(iterations):
-  outfile.write('  <animate attributeName="points" begin="%ds" dur="1s" fill="freeze" \n' % n)
+for n in range(iterations+1):
+  outfile.write('  <animate attributeName="points" begin="%ds" dur="1s" fill="freeze" \n' % (iterations-n))
   #The from portion will hold the last iteration:
-  outfile.write('    from="')
+  outfile.write('    to="')
   for i in range(len(points)):
     outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
   #The "to" portion will contain the next level down:
-  outfile.write('"\n    to="')
+  outfile.write('"\n    from="')
   #Interpolate the curve to generate next level down:
   #Span of points to interpolate:
   span=(3**(n+1))
