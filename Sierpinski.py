@@ -45,11 +45,21 @@ outfile.write('<svg xmlns:svg="http://www.w3.org/2000/svg"\n')
 outfile.write('xmlns="http://www.w3.org/2000/svg" version="1.1"\n')
 #Set svg size:
 outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
+
 #Create a line to follow the curve:
 outfile.write('<polyline points="')
 for i in range(len(points)):
   outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
 outfile.write('"\n style="fill:none;stroke:red;stroke-width:%.4f" />\n' % (spotsize/3.0))
+
+#Interpolate the curve to generate next level down:
+for i in range((len(points)-1)/3):
+  del points[i+1]
+  del points[i+1]
+outfile.write('<polyline points="')
+for i in range(len(points)):
+  outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
+outfile.write('"\n style="fill:none;stroke:black;stroke-width:%.4f" />\n' % (spotsize/3.0))
 
 #End SVG:
 outfile.write('</svg>\n')
