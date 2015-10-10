@@ -53,7 +53,7 @@ primelist=[int(next(primegen))]
 while primelist[-1]<=len(points):
   primelist.append(int(next(primegen)))
 #Truncate if needed:
-if primelist[-1]>len(points):
+while primelist[-1]>=len(points):
   del primelist[-1]
 
 #Write svg header:
@@ -69,17 +69,26 @@ outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
 #  outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*spotsize+diagsz/2.0, (points[i][1])*spotsize+diagsz/2.0))
 #outfile.write('" />')
 
-#Draw prime spots:
+#Draw and animate spots at multiples of prime numbers:
+#How many primes to animate:
+#nprimes=min(max(len(primelist)/2, 10), len(primelist))
+#for p in range(nprimes):
 for p in range(len(primelist)):
   outfile.write('<g id="mod%dspots">\n' %(primelist[p]))
   for i in range(0,len(points),primelist[p]):
     outfile.write(' <circle id="%dx%d" fill="rgb(0,0,255)" stroke="none" opacity="0.2" stroke-width="%.4f" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], i, spotsize/10, (points[i][0])*spotsize+diagsz/2, (points[i][1])*spotsize+diagsz/2, spotsize/2))
     outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="0.2"          to="1"            /> \n' % (2*p))
     outfile.write('  <animate attributeName="fill"    begin="%ds" dur="2s" fill="freeze" from="rgb(0,0,255)" to="rgb(255,0,0)" /> \n' % (2*p))
-    outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="1"            to="0.3"          /> \n' % (2*(p+1)))
+    outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="1"            to="0.2"          /> \n' % (2*(p+1)))
     outfile.write('  <animate attributeName="fill"    begin="%ds" dur="2s" fill="freeze" from="rgb(255,0,0)" to="rgb(0,0,255)" /> \n' % (2*(p+1)))
     outfile.write(' </circle>\n')
   outfile.write('</g>')
+
+#Draw and animate spots at prime numbers:
+for p in range(len(primelist)):
+  outfile.write(' <circle id="prime%d" fill="rgb(0,255,0)" stroke="none" opacity="0" stroke-width="%.4f" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], spotsize/10, (points[primelist[p]][0])*spotsize+diagsz/2, (points[primelist[p]][1])*spotsize+diagsz/2, spotsize/2))
+  outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="0.0"          to="1"            /> \n' % (2*p+1))
+  outfile.write(' </circle>\n')
 
 #End SVG:
 outfile.write('</svg>\n')
