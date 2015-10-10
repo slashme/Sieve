@@ -2,14 +2,14 @@ import math
 #Static definitions:
 #Order of triangle to draw:
 iterations=9
-#Spotsize needs to be corrected, just testing...
-spotsize=1
 #Static SVG file name for now:
 svgfilename="/home/david/Pictures/Sieve/SierpinskiOutput.svg"
 # Open svg file for writing:
 outfile=open(svgfilename,'w')
 #Diagram size in SVG units:
 diagsz=800.0
+#Half the length of a segment (radius of a circle centered on a vertex):
+spotsize=1.0/(2**(iterations+2))*diagsz
 ##Need half of sin(pi/3) for hexagon corner:
 hsp3=0.5*math.sin(math.pi/3)
 #Order 1 triangle as reference points:
@@ -52,7 +52,7 @@ outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
 outfile.write('<polyline points="')
 for i in range(len(points)):
   outfile.write( '\n%.4f,%.4f ' % ((points[i][0])*diagsz, (points[i][1])*diagsz))
-outfile.write('"\n style="fill:none;stroke:red;stroke-width:%.4f" />\n' % (spotsize/4.0))
+outfile.write('"\n style="fill:none;stroke:red;stroke-width:%.4f" />\n' % (spotsize/3.0))
 
 #End SVG:
 outfile.write('</svg>\n')
