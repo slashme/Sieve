@@ -4,7 +4,7 @@ import math, operator, gmpy2
 rings=10
 
 #Amount by which to squish the diagram:
-squish=1/(3-math.sqrt(2))
+squish=math.sqrt(1.0/3)
 
 #Generator function from primes using gmpy2:
 def primes():
@@ -50,7 +50,7 @@ for i in range(rings):
 del points[-1]
 
 #What the spot size will be after squishing and before scaling:
-spotsize=2.0*(1/(3.0-math.sqrt(2)))
+spotsize=2.0*squish
 #Find the maximum coordinate in the points list. The diagram is symmetrical, so the y coordinate will be the max, and there's no need to get abs. values.
 #Then add the spot size in squished units, so that we can include the edge spots, not just their centers.
 maxcoord=max(map(max, points))/squish+spotsize
