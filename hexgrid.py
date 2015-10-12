@@ -23,9 +23,10 @@ moves=[
     [ 0.5,-sp3], #right down
     [ 1.0, 0.0]  #right
     ]
+
 #Diagram size in SVG units:
 diagsz=800.0
-#Static spot size for now:
+#Calculate spot size based on diagram size:
 spotsize=diagsz/(rings+1)/2.0
 
 #Static SVG file name for now:
