@@ -1,7 +1,7 @@
 import math, operator, gmpy2
 #Static defs
 #Number of rings
-rings=10
+rings=100
 
 #Amount by which to squish the diagram:
 squish=math.sqrt(1.0/3)
@@ -82,21 +82,22 @@ outfile.write('width="%.2f" height="%.2f">\n' % (diagsz, diagsz))
 #How many primes to animate:
 #nprimes=min(max(len(primelist)/2, 10), len(primelist))
 #for p in range(nprimes):
+outfile.write(' <circle id="Wau" fill="none" stroke="rgb(0,0,0)" opacity="1" cx="%.4f" cy="%.4f" r="%.4f" />\n' % ((points[1][0]), (points[1][1]), spotsize/2))
 for p in range(len(primelist)):
   outfile.write('<g id="mod%dspots">\n' %(primelist[p]))
   for i in range(0,len(points),primelist[p]):
-    outfile.write(' <circle id="%dx%d" fill="rgb(0,0,255)" stroke="none" opacity="0.2" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], i, (points[i][0]), (points[i][1]), spotsize/2))
-    outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="0.2"          to="1"            /> \n' % (2*p))
-    outfile.write('  <animate attributeName="fill"    begin="%ds" dur="2s" fill="freeze" from="rgb(0,0,255)" to="rgb(255,0,0)" /> \n' % (2*p))
-    outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="1"            to="0.2"          /> \n' % (2*(p+1)))
-    outfile.write('  <animate attributeName="fill"    begin="%ds" dur="2s" fill="freeze" from="rgb(255,0,0)" to="rgb(0,0,255)" /> \n' % (2*(p+1)))
+    outfile.write(' <circle id="%dx%d" fill="rgb(0,0,255)" stroke="none" opacity="0.2" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], i/primelist[p], (points[i][0]), (points[i][1]), spotsize/2))
+    #outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="0.2"          to="1"            /> \n' % (2*p))
+    #outfile.write('  <animate attributeName="fill"    begin="%ds" dur="2s" fill="freeze" from="rgb(0,0,255)" to="rgb(255,0,0)" /> \n' % (2*p))
+    #outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="1"            to="0.2"          /> \n' % (2*(p+1)))
+    #outfile.write('  <animate attributeName="fill"    begin="%ds" dur="2s" fill="freeze" from="rgb(255,0,0)" to="rgb(0,0,255)" /> \n' % (2*(p+1)))
     outfile.write(' </circle>\n')
   outfile.write('</g>')
 
 #Draw and animate spots at prime numbers:
 for p in range(len(primelist)):
-  outfile.write(' <circle id="prime%d" fill="rgb(0,255,0)" stroke="none" opacity="0" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], (points[primelist[p]][0]), (points[primelist[p]][1]), spotsize/2))
-  outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="0.0"          to="1"            /> \n' % (2*p+1))
+  outfile.write(' <circle id="prime%d" fill="rgb(255,0,0)" stroke="none" opacity="1" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], (points[primelist[p]][0]), (points[primelist[p]][1]), spotsize/2))
+  #outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="0.0"          to="1"            /> \n' % (2*p+1))
   outfile.write(' </circle>\n')
 
 #End SVG:
