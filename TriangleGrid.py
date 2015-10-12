@@ -95,7 +95,7 @@ for p in range(len(primelist)):
 
 #Draw and animate spots at prime numbers:
 for p in range(len(primelist)):
-  outfile.write(' <circle id="prime%d" fill="rgb(0,255,0)" stroke="none" opacity="0" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], (points[i][0]), (points[i][1]), spotsize/2))
+  outfile.write(' <circle id="prime%d" fill="rgb(0,255,0)" stroke="none" opacity="0" cx="%.4f" cy="%.4f" r="%.4f" >\n' % (primelist[p], (points[primelist[p]][0]), (points[primelist[p]][1]), spotsize/2))
   outfile.write('  <animate attributeName="opacity" begin="%ds" dur="2s" fill="freeze" from="0.0"          to="1"            /> \n' % (2*p+1))
   outfile.write(' </circle>\n')
 
