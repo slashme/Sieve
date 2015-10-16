@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import math, random
+import math
 #Static SVG file name for now:
 svgfilename="/home/david/Pictures/Sieve/TriangleOutput.svg"
 #Static number of rows:
