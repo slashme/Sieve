@@ -45,7 +45,7 @@ for j in range(iterations):
   radius=1/(2**(j*0.5+1))
   print("radius " + str(radius))
   outfile.write('<path style="fill:none;stroke:black;stroke-width:0.5" \n')
-  outfile.write('d="M %.4f,%.4f\n' % tuple([x*steplength*diagsz for x in directions[firststep]]))
+  outfile.write('d="M %.4f,%.4f\n' % tuple([x*radius/math.sqrt(sum([x**2 for x in directions[firststep]]))*diagsz for x in directions[firststep]]))
   for i in range(len(segments)):
     outfile.write('   a %.4f,%.4f 0 0,%d %.4f,%.4f\n' % (radius*diagsz, radius*diagsz, segments[i][2], segments[i][0][0]*steplength*diagsz, segments[i][0][1]*steplength*diagsz))
   outfile.write('"\n/>\n')
