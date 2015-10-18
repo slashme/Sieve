@@ -1,10 +1,12 @@
 import math, copy
 #Offset to get curve into middle of page:
-offset=[0.33,0.23]
+offset=[0.333,0.23]
 #Diagram size
-diagsz=1000.0
+diagsz=900.0
 #How many iterations of the curve to draw:
-iterations=9
+iterations=13
+#How long does an iteration take in seconds:
+iterlength=4
 
 #Static SVG file name for now:
 svgfilename="/home/david/Pictures/Sieve/dragonOutput.svg"
@@ -39,7 +41,7 @@ oldsteplength=steplength
 #Create initial segments list: [[x,y],length, curve dir.] 
 segments=[[[0,0],0,0],[[0,0],0,1]]
 #start the path statement outside the loop:
-outfile.write('<path style="fill:none;stroke:black;stroke-width:0.5">\n')
+outfile.write('<path style="fill:none;stroke:black;stroke-width:1.0">\n')
 for j in range(iterations):
   tempdir=firstdir #Start with the saved first direction, will iterate.
   for i in range(2**(j+1)+1):
@@ -54,16 +56,17 @@ for j in range(iterations):
     segments[i][1]=steplength
   oldradius=radius
   radius=1/(2**(j*0.5+1))
-  outfile.write('  <animate attributeName="d"\n  begin="%ds" dur="1s" fill="freeze"\n  from=\n' % j)
-  outfile.write('"M %.4f,%.4f\n' % tuple([y+x*oldradius/math.sqrt(sum([x**2 for x in directions[oldfirststep]]))*diagsz/2 for x,y in zip(directions[oldfirststep],[w*diagsz for w in offset])]))
-  for i in range(len(segments)):
-    outfile.write('   a %.4f,%.4f 0 0,%d %.4f,%.4f\n' % (oldradius*diagsz/2, oldradius*diagsz/2, oldsegments[i][2], oldsegments[i][0][0]*oldsteplength*diagsz/2, oldsegments[i][0][1]*oldsteplength*diagsz/2))
-  outfile.write('"\n')
-  outfile.write('to="M %.4f,%.4f\n' % tuple([y+x*radius/math.sqrt(sum([x**2 for x in directions[firststep]]))*diagsz/2 for x,y in zip(directions[firststep],[w*diagsz for w in offset])]))
-  for i in range(len(segments)):
-    outfile.write('   a %.4f,%.4f 0 0,%d %.4f,%.4f\n' % (radius*diagsz/2, radius*diagsz/2, segments[i][2], segments[i][0][0]*steplength*diagsz/2, segments[i][0][1]*steplength*diagsz/2))
-  outfile.write('"\n')
-  outfile.write('/>\n')
+  if 1:
+    outfile.write('  <animate attributeName="d"\n  begin="%ds" dur="%ds" fill="freeze"\n  from=\n' % (iterlength*(j-1),iterlength))
+    outfile.write('"M %.4f,%.4f\n' % tuple([y+x*oldradius/math.sqrt(sum([x**2 for x in directions[oldfirststep]]))*diagsz/2 for x,y in zip(directions[oldfirststep],[w*diagsz for w in offset])]))
+    for i in range(len(segments)):
+      outfile.write('   a %.4f,%.4f 0 0,%d %.4f,%.4f\n' % (oldradius*diagsz/2, oldradius*diagsz/2, oldsegments[i][2], oldsegments[i][0][0]*oldsteplength*diagsz/2, oldsegments[i][0][1]*oldsteplength*diagsz/2))
+    outfile.write('"\n')
+    outfile.write('to="M %.4f,%.4f\n' % tuple([y+x*radius/math.sqrt(sum([x**2 for x in directions[firststep]]))*diagsz/2 for x,y in zip(directions[firststep],[w*diagsz for w in offset])]))
+    for i in range(len(segments)):
+      outfile.write('   a %.4f,%.4f 0 0,%d %.4f,%.4f\n' % (radius*diagsz/2, radius*diagsz/2, segments[i][2], segments[i][0][0]*steplength*diagsz/2, segments[i][0][1]*steplength*diagsz/2))
+    outfile.write('"\n')
+    outfile.write('/>\n')
   oldfirstdir=firstdir
   oldfirststep=firststep
   firstdir =(firstdir +1)%8
